@@ -1,0 +1,77 @@
+<Project Sdk="Microsoft.NET.Sdk.Web">
+
+    <PropertyGroup>
+        <TargetFramework>net7.0</TargetFramework>
+        <Nullable>enable</Nullable>
+        <ImplicitUsings>enable</ImplicitUsings>
+        <DockerDefaultTargetOS>Linux</DockerDefaultTargetOS>
+        <UserSecretsId>3e421222-d8e8-47cc-bb6f-c7bfadbc887d</UserSecretsId>
+        <ApplicationIcon>..\scimserve-logo.jpg</ApplicationIcon>
+    </PropertyGroup>
+
+    <ItemGroup>
+        <PackageReference Include="AsyncAuthFlowCore" Version="4.0.0" />
+        <PackageReference Include="JetBrains.Annotations" Version="2023.3.0" />
+        <PackageReference Include="LabelLocker" Version="2.0.1" />
+        <PackageReference Include="LabelLocker.EFCore" Version="2.0.1" />
+        <PackageReference Include="Microsoft.AspNetCore.OpenApi" Version="7.0.13" />
+        <PackageReference Include="Microsoft.EntityFrameworkCore" Version="7.0.16" />
+        <PackageReference Include="Microsoft.EntityFrameworkCore.Design" Version="7.0.16">
+          <PrivateAssets>all</PrivateAssets>
+          <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+        </PackageReference>
+        <PackageReference Include="Serilog" Version="3.1.1" />
+        <PackageReference Include="Serilog.Extensions.Hosting" Version="8.0.0" />
+        <PackageReference Include="Serilog.Extensions.Logging" Version="8.0.0" />
+        <PackageReference Include="Swashbuckle.AspNetCore" Version="6.5.0" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <ProjectReference Include="..\Scim.ExternalServices\Scim.ExternalServices.csproj" />
+      <ProjectReference Include="..\ScimServe.EFCoreRepositories\ScimServe.EFCoreRepositories.csproj" />
+      <ProjectReference Include="..\ScimServe.Endpoints\ScimServe.Endpoints.csproj" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <Reference Include="Microsoft.EntityFrameworkCore.SqlServer">
+        <HintPath>C:\Users\douce\.nuget\packages\microsoft.entityframeworkcore.sqlserver\7.0.16\lib\net6.0\Microsoft.EntityFrameworkCore.SqlServer.dll</HintPath>
+      </Reference>
+    </ItemGroup>
+
+    <ItemGroup>
+      <Content Update="appsettings.development.json">
+        <CopyToPublishDirectory>Never</CopyToPublishDirectory>
+      </Content>
+    </ItemGroup>
+
+    <ItemGroup>
+      <_ContentIncludedByDefault Remove="wwwroot\css\custom-swagger-ui.css" />
+      <_ContentIncludedByDefault Remove="wwwroot\js\custom-swagger-ui.js" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <None Include="..\scimserve-logo.jpg">
+        <Link>scimserve-logo.jpg</Link>
+      </None>
+      <None Include="..\scimserve-logo.png">
+        <Link>scimserve-logo.png</Link>
+      </None>
+    </ItemGroup>
+
+    <ItemGroup>
+      <EmbeddedResource Update="Swagger.resx">
+        <Generator>ResXFileCodeGenerator</Generator>
+        <LastGenOutput>Swagger.Designer.cs</LastGenOutput>
+      </EmbeddedResource>
+    </ItemGroup>
+
+    <ItemGroup>
+      <Compile Update="Swagger.Designer.cs">
+        <DesignTime>True</DesignTime>
+        <AutoGen>True</AutoGen>
+        <DependentUpon>Swagger.resx</DependentUpon>
+      </Compile>
+    </ItemGroup>
+
+
+</Project>
